@@ -1,0 +1,69 @@
+import tkinter
+import tkinter as tk
+import random
+from tkinter import PhotoImage
+
+def prepare_and_start():
+    global player
+    canvas.delete("all")
+    player_pos = (random.randint(1,N_X-1)*step,
+                  random.randint(1,N_Y-1)*step)
+    player = canvas.create_image(
+        (player_pos[0],player_pos[1]),image = player_pic,anchor = 'nw')
+    label.config(text="найти обоюдно")
+    aderka = canvas.create_image(
+        (random.randint(1, 20, ), random.randint(1, 20, )), image=tochka, anchor='nw')
+
+def move_warps(obj, move_x, move_y):
+    xy = canvas.coords(obj)
+    print(xy)
+    if xy[0] <= 0:
+        canvas.move(obj, WIDTH, 0)
+    if xy[0] >= WIDTH:
+        canvas.move(obj, -WIDTH, 0)
+    if xy[1] <= 0:
+        canvas.move(obj, o, HEIGHT)
+    if xy[1] >= HEIGHT:
+        canvas.move(obj, 0, -HEIGHT)
+
+
+def move_by_keys(event):
+    info_coords = canvas.coords(player)
+    x = info_coords[0]
+    y = info_coords[1]
+    label.config(text=str(x)+ ' '+ str(y))
+    if event.keysym == 'Up':
+        canvas.move(player,0,-20)
+    elif event.keysym == 'Down':
+        canvas.move(player,0,20)
+    elif event.keysym == 'Left':
+        canvas.move(player,-20,0)
+    elif event.keysym == 'Right':
+        canvas.move(player,20, 0)
+
+master = tkinter.Tk()
+
+step=32
+N_Y=30
+N_X=30
+WIDTH = step*N_Y
+HEIGHT = step*N_Y
+a = False
+player_pic = tkinter.PhotoImage(file="Лазер хома хочет выстрел пнг.png")
+
+canvas = tkinter.Canvas(master,bg='#FCAB08',
+                        width=WIDTH,height=HEIGHT)
+player_pos = (random.randint(0,N_X-1)*step,
+              random.randint(0,N_Y-1)*step)
+print(player_pos)
+label = tkinter.Label(master,text='нЕ ПОПАДИСЬ!')
+restar = tkinter.Button(master,text="Начать заново",
+                        command=prepare_and_start)
+player = canvas.create_image(
+        (player_pos[0],player_pos[1]),image = player_pic,anchor = 'nw')
+tochka = tkinter.PhotoImage(file="Ядерко летит на киев.png")
+
+master.bind("<KeyPress>" ,move_by_keys)
+canvas.pack()
+restar.pack()
+master.mainloop()
