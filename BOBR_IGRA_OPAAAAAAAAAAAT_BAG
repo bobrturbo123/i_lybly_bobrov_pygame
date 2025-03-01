@@ -1,0 +1,22 @@
+import pygame as pistrun
+
+pistrun.init() #обязательная каманда people
+window_size=(300,300) #dont
+screen=pistrun.display.set_mode(window_size) #создание экрана(окна) с размера 300x300 (можно в него выйти?)
+pistrun.display.set_caption("Ядерко хома ананас") #название окна
+backgound_color = (0,0,255) #цвет
+clock = pistrun.time.Clock()#создание игровово таймера
+a = 150
+b = 150
+while True:    #игрововй таймер
+    clock.tick(40) #частота обновления таймераааааа
+    cartel = pistrun.Rect(a, b, 100, 50)
+    pistrun.draw.rect(screen, (255, 255, 255), cartel)
+    pistrun.display.update() #обновление содержимого экрана
+    screen.fill(backgound_color)  # заполнение окна цветоm
+    for event in pistrun.event.get(0): #проходимся по событиям
+        if event.type == pistrun.QUIT: #если нажали на крестик
+            pistrun.QUIT() #выйти из ГОЙДА
+        if event.type == pistrun.KEYDOWN:
+            if event.key == pistrun.K_a:
+                a = a+10
