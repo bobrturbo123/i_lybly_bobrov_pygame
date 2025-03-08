@@ -1,0 +1,56 @@
+import pygame as pistrun
+
+pistrun.init() #обязательная каманда people
+window_size=(300,300) #dont
+screen=pistrun.display.set_mode(window_size) #создание экрана(окна) с размера 300x300 (можно в него выйти?)
+pistrun.display.set_caption("Ядерко хома ананас") #название окна
+backgound_color = (0,0,255) #цвет
+clock = pistrun.time.Clock()#создание игровово таймера
+a = 150
+b = 150
+C=150
+V=150
+cartel = pistrun.Rect(a, b, 100, 50)
+bebra = pistrun.font.SysFont('Arial',(11))
+bibrashka = bebra.render('Тут был хома', True, (0,0,0))
+cartel = pistrun.Rect(a, b, 150, 150)
+while True:    #игрововй таймер
+    clock.tick(40)  # частота обновления таймераааааа
+    pistrun.display.update()
+    screen.fill(backgound_color)  # заполнение окна цветоm
+    pistrun.draw.rect(screen, (255, 255, 255), cartel)
+    screen.blit(bibrashka,(a,b))
+    KRUZOK = pistrun.draw.circle(screen, (0, 255, 255), (C, V), 52)
+    for event in pistrun.event.get(): #проходимся по событиям
+        if event.type == pistrun.QUIT: #если нажали на крестик
+            pistrun.QUIT() #выйти из ГОЙДА
+        if event.type == pistrun.KEYDOWN:
+            if event.key == pistrun.K_a:
+                cartel.x -= 10
+                a-=10
+            elif event.key == pistrun.K_d:
+                cartel.x += 10
+                a+=10
+            elif event.key == pistrun.K_s:
+                cartel.y += 10
+                b+=10
+            elif event.key == pistrun.K_w:
+                cartel.y -= 10
+                b-=10
+        if event.type == pistrun.KEYDOWN:
+            if event.key == pistrun.K_LEFT:
+                C -= 10
+            elif event.key == pistrun.K_RIGHT:
+                C += 10
+            elif event.key == pistrun.K_DOWN:
+                V += 10
+            elif event.key == pistrun.K_UP:
+                V -= 10
+        if C >=350:
+            C = -51
+        elif C <= -52:
+            C = 349
+        elif V >= 350:
+            V = -51
+        elif V <= -52:
+            V = 349
