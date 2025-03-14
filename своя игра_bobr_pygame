@@ -4,7 +4,7 @@ import random as ran
 pistrun.init() #обязательная каманда people
 window_size=(300,300) #dont
 screen=pistrun.display.set_mode(window_size) #создание экрана(окна) с размера 300x300 (можно в него выйти?)
-pistrun.display.set_caption("Ядерко хома ананас") #название окна
+ #название окна
 backgound_color = (0,0,255) #цвет
 clock = pistrun.time.Clock()#создание игровово таймера
 a = 150
@@ -38,6 +38,7 @@ while True:    #игрововй таймер
     clock.tick(40)  # частота обновления таймераааааа
     pistrun.display.update()
     screen.fill(backgound_color)  # заполнение окна цветоm
+    pistrun.display.set_caption(str(chot))
     pistrun.draw.rect(screen, (255, 0, 0), chel)
     pistrun.draw.rect(screen, (255, 0, 255),werf)
     pistrun.draw.rect(screen, (255, 255, 255), cartel)
