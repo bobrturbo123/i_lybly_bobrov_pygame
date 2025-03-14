@@ -1,0 +1,110 @@
+import pygame as pistrun
+import random as ran
+
+pistrun.init() #обязательная каманда people
+window_size=(300,300) #dont
+screen=pistrun.display.set_mode(window_size) #создание экрана(окна) с размера 300x300 (можно в него выйти?)
+pistrun.display.set_caption("Ядерко хома ананас") #название окна
+backgound_color = (0,0,255) #цвет
+clock = pistrun.time.Clock()#создание игровово таймера
+a = 150
+b = 150
+zov= 150
+x = 150
+cvo = ran.randint(0,299)
+zovo= ran.randint(0,299)
+cartel = pistrun.Rect(a, b, 10, 10)
+werf = pistrun.Rect(zov, x, 10, 10)
+niz= pistrun.Rect(zov, x, 10, 10)
+pravo = pistrun.Rect(zov, x, 10, 10)
+levo = pistrun.Rect(zov, x, 10, 10)
+chel = pistrun.Rect(cvo,zovo,10,10)
+picun = 10
+chot = 0
+def ngrizli():
+    werf.x = zov
+    werf.y = x
+def nizo():
+    niz.x = zov
+    niz.y = x
+def pravoo():
+    pravo.x = zov
+    pravo.y = x
+def levoo():
+    levo.x = zov
+    levo.y = x
+
+while True:    #игрововй таймер
+    clock.tick(40)  # частота обновления таймераааааа
+    pistrun.display.update()
+    screen.fill(backgound_color)  # заполнение окна цветоm
+    pistrun.draw.rect(screen, (255, 0, 0), chel)
+    pistrun.draw.rect(screen, (255, 0, 255),werf)
+    pistrun.draw.rect(screen, (255, 255, 255), cartel)
+    pistrun.draw.rect(screen, (255, 0, 255), niz)
+    pistrun.draw.rect(screen, (255, 0, 255), levo)
+    pistrun.draw.rect(screen, (255, 0, 255), pravo)
+    niz.y+=1
+    werf.y-=1
+    levo.x-=1
+    pravo.x+=1
+    cvo = ran.randint(0, 299)
+    zovo = ran.randint(0, 299)
+    if niz.y == chel.y and niz.x== chel.x:
+        chot = chot+1
+        chel.x=cvo
+        chel.y=zovo
+        print(chot)
+    elif werf.y == chel.y and werf.x==chel.x:
+        chot = chot + 1
+        chel.x = cvo
+        chel.y = zovo
+        print(chot)
+    elif levo.y == chel.y and levo.x==chel.x:
+        chot = chot + 1
+        chel.x = cvo
+        chel.y = zovo
+        print(chot)
+    elif pravo.y == chel.y and pravo.x==chel.x:
+        chot = chot + 1
+        chel.x = cvo
+        chel.y = zovo
+        print(chot)
+
+    for event in pistrun.event.get(): #проходимся по событиям
+        if event.type == pistrun.QUIT: #если нажали на крестик
+            pistrun.QUIT() #выйти из ГОЙДА
+
+        if event.type == pistrun.KEYDOWN:
+            if event.key == pistrun.K_a:
+                cartel.x -= 1
+                zov-=1
+            elif event.key == pistrun.K_d:
+                cartel.x += 1
+                zov += 1
+            elif event.key == pistrun.K_s:
+                cartel.y += 1
+                x+=1
+            elif event.key == pistrun.K_w:
+                cartel.y -= 1
+                x-=1
+            if event.key == pistrun.K_f:
+                cartel.x -= 10
+                zov-=10
+            elif event.key == pistrun.K_h:
+                cartel.x += 10
+                zov += 10
+            elif event.key == pistrun.K_g:
+                cartel.y += 10
+                x+=10
+            elif event.key == pistrun.K_t:
+                cartel.y -= 10
+                x-=10
+            if event.key == pistrun.K_UP:
+                ngrizli()
+            elif event.key == pistrun.K_DOWN:
+                nizo()
+            elif event.key == pistrun.K_LEFT:
+                levoo()
+            elif event.key == pistrun.K_RIGHT:
+                pravoo()
