@@ -1,68 +1,45 @@
-import tkinter
-import tkinter as tk
-import random
-from tkinter import PhotoImage
+'''class Human:
+    # cвойства
+    age = 10
+    height = 150
+    weight = 50
 
-def prepare_and_start():
-    global player
-    canvas.delete("all")
-    player_pos = (random.randint(1,N_X-1)*step,
-                  random.randint(1,N_Y-1)*step)
-    player = canvas.create_image(
-        (player_pos[0],player_pos[1]),image = player_pic,anchor = 'nw')
-    label.config(text="найти обоюдно")
-    master.bind("<KeyPress>",key_pressed)
+    # методы
+    def say_hello(self):
+        print("Hello!")
+        print("I am a human")
+    def say_good_bye(self):
+        print("See you!")
+John = Human()
+Frank = Human()
+print(John.age)
+John.say_hello()
+print(Frank.height)
+Frank.say_good_bye()
 
+class  My_class:
+    def __init__(self,name,surname):
+        self.name =name
+        self.surname=surname
 
-def move_warps(obj, move_x, move_y):
-    xy = canvas.coords(obj)
-    print(xy)
-    if xy[0] <= 0:
-        canvas.move(obj, WIDTH, 0)
-    if xy[0] >= WIDHT:
-        canvas.move(obj, -WIDTH, 0)
-    if xy[1] <= 0:
-        canvas.move(obj, o, HEIGHT)
-    if xy[1] >= HEIGHT:
-        canvas.move(obj, 0, -HEIGHT)
+me = My_class("Грызть","Какашки")
+print(me.name,me.surname)'''
 
-
-def move_by_keys(event):
-    info_coords = canvas.coords(player)
-    x = info_coords[0]
-    y = info_coords[1]
-    label.config(text=str(x)+ ' '+ str(y))
-    if event.keysym == 'Up':
-        canvas.move(player,0,-20)
-    elif event.keysym == 'Down':
-        canvas.move(player,0,20)
-    elif event.keysym == 'Left':
-        canvas.move(player,-20,0)
-    elif event.keysym == 'Right':
-        canvas.move(player,20, 0)
-
-master = tkinter.Tk()
-
-step=32
-N_Y=30
-N_X=30
-WIDTH = step*N_Y
-HEIGHT = step*N_Y
-a = False
-player_pic = tkinter.PhotoImage(file="bobr.png.png")
-
-canvas = tkinter.Canvas(master,bg='#FCAB08',
-                        width=WIDTH,height=HEIGHT)
-player_pos = (random.randint(0,N_X-1)*step,
-              random.randint(0,N_Y-1)*step)
-print(player_pos)
-label = tkinter.Label(master,text='нЕ ПОПАДИСЬ!')
-restar = tkinter.Button(master,text="Начать заново",
-                        command=prepare_and_start)
-player = canvas.create_image(
-        (player_pos[0],player_pos[1]),image = player_pic,anchor = 'nw')
-
-master.bind("<KeyPress>" ,move_by_keys)
-canvas.pack()
-restar.pack()
-master.mainloop()
+class player:
+    def __init__(self,name,waer,wearpone,healf,hit_power,enemy):
+        self.name = name
+        self.waer = waer
+        self.wearpone = wearpone
+        self.healf = healf
+        self.hit_power=hit_power
+        self.enemy = enemy
+    def pechat(self):
+        print("ВАШЕ ИМЯЯ:",self.name,
+              "ВАША ОДЕЖДАААЧААААААВВААВ:",self.waer,
+              "ВАША ОРУЖИЕЕЕЕЕЕЕЕ:",self.wearpone,
+              "ЗДОРОВЬЕ ПОПУСКАА:",self.healf,
+              "НАСКОЛЬКО СЛАБ ВАШ УДАРЧИК:",self.hit_power)
+    def hit(self):
+        print(self,"атакует",self.enemy,"используя",self.wearpone,"c cилой",self.hit_power,"теперь здоровье")
+me = player("Гойда","ЛЕГЕНДАРНАЯ прозрачная мантия","ЛЕГЕНДАРНЫЙ ПЕРЕКОВАНЫЙ ЗАЧАРОВАНЫЙ ВАМПИРСКИЙ ржавый клинок",150,300)
+me.pechat()
