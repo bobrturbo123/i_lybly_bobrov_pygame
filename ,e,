@@ -1,45 +1,27 @@
-'''class Human:
-    # cвойства
-    age = 10
-    height = 150
-    weight = 50
+import pygame
 
-    # методы
-    def say_hello(self):
-        print("Hello!")
-        print("I am a human")
-    def say_good_bye(self):
-        print("See you!")
-John = Human()
-Frank = Human()
-print(John.age)
-John.say_hello()
-print(Frank.height)
-Frank.say_good_bye()
+def kryzok(sc,x,y, size):
+    CORDI_1= size*0.5+size*x
+    CORDI_2= size*0.5+size*y
+    pygame.draw.circle(sc,(0,0,0),(CORDI_1,CORDI_2),100)
 
-class  My_class:
-    def __init__(self,name,surname):
-        self.name =name
-        self.surname=surname
 
-me = My_class("Грызть","Какашки")
-print(me.name,me.surname)'''
-
-class player:
-    def __init__(self,name,waer,wearpone,healf,hit_power,enemy):
-        self.name = name
-        self.waer = waer
-        self.wearpone = wearpone
-        self.healf = healf
-        self.hit_power=hit_power
-        self.enemy = enemy
-    def pechat(self):
-        print("ВАШЕ ИМЯЯ:",self.name,
-              "ВАША ОДЕЖДАААЧААААААВВААВ:",self.waer,
-              "ВАША ОРУЖИЕЕЕЕЕЕЕЕ:",self.wearpone,
-              "ЗДОРОВЬЕ ПОПУСКАА:",self.healf,
-              "НАСКОЛЬКО СЛАБ ВАШ УДАРЧИК:",self.hit_power)
-    def hit(self):
-        print(self,"атакует",self.enemy,"используя",self.wearpone,"c cилой",self.hit_power,"теперь здоровье")
-me = player("Гойда","ЛЕГЕНДАРНАЯ прозрачная мантия","ЛЕГЕНДАРНЫЙ ПЕРЕКОВАНЫЙ ЗАЧАРОВАНЫЙ ВАМПИРСКИЙ ржавый клинок",150,300)
-me.pechat()
+window_size = (600, 600)
+pygame.init()
+size = 200
+screen = pygame.display.set_mode(window_size)  # создание экрана(окна) с размера 300x300
+pygame.display.set_caption("БАСУХА В ДЕЛЕ РОДНЫЕ")  # название окна
+backgound_color = (255, 255, 255)  # цвет
+clock = pygame.time.Clock()  # создание игровово таймера
+while True:  # игрововй таймер
+    clock.tick(40)  # частота обновления таймераааааа
+    screen.fill(backgound_color)
+    pygame.draw.line(screen, (0, 0,0), [0, 400], [600, 400], 3)
+    pygame.draw.line(screen, (0, 0, 0), [0, 200], [600, 200], 3)
+    pygame.draw.line(screen, (0, 0, 0), [200, 0], [200, 600], 3)
+    pygame.draw.line(screen, (0, 0, 0), [400, 0], [400, 600], 3)
+    kryzok(screen, 1, 1, 200)
+    for event in pygame.event.get():  # проходимся по событиям
+        if event.type == pygame.QUIT:  # если нажали на крестик
+            pygame.QUIT()  # выйти из ГОЙДА
+    pygame.display.update() #ОБНОВЛЕНИЕ ДИСПЛЕЯ
